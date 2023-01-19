@@ -15,6 +15,7 @@ namespace webApp
         // For more information on how to configure your application, visit https://go.microsoft.com/fwlink/?LinkID=398940
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddMvc();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -27,16 +28,23 @@ namespace webApp
 
             app.UseStaticFiles();
 
-            app.Run(async (context) =>
+            // app.Run(async (context) =>
+            // {
+            //     await context.Response.WriteAsync($"Hello DotNET!");
+            // });
+
+            // app.Run(async (context) =>
+            // {
+            //     string nome = context.Request.Query["nome"];
+            //     await context.Response.WriteAsync($"Hello {nome.ToUpper()}!");
+            // });
+
+            app.UseMvc(routeBuilder =>
             {
-                await context.Response.WriteAsync($"Hello DotNET!");
+                routeBuilder.MapRoute("default", "{controller=Home}/{action=Index}/{id?}");
             });
 
-            app.Run(async (context) =>
-            {
-                string nome = context.Request.Query["nome"];
-                await context.Response.WriteAsync($"Hello {nome.ToUpper()}!");
-            });
+            //app.UseMvcWithDefaultRoute();
         }
     }
 }

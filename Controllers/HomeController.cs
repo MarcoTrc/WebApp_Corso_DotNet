@@ -10,7 +10,7 @@ namespace WebApp.Controllers
     {
         public IActionResult Index()
         {
-            return Content("Hello from Index!!");
+            return View();
         }
     }
 }

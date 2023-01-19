@@ -8,14 +8,13 @@ namespace WebApp.Controllers
 {
     public class CourseController : Controller
     {
+        public IActionResult Index()
+        {
+            return View();
+        }
         public IActionResult Detail(string id)
         {
-            return Content($"Hello from detail ho ricevuto l'ID {id}!");
-        }
-
-        public IActionResult Search(string title)
-        {
-            return Content($"Hai cercato {title}");
+            return View();
         }
     }
 }

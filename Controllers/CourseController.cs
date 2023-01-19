@@ -12,5 +12,10 @@ namespace WebApp.Controllers
         {
             return Content($"Hello from detail ho ricevuto l'ID {id}!");
         }
+
+        public IActionResult Search(string title)
+        {
+            return Content($"Hai cercato {title}");
+        }
     }
 }

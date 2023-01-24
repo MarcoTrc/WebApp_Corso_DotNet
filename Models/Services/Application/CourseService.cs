@@ -8,7 +8,7 @@ using WebApp.Models.ViewModels;
 
 namespace WebApp.Models.Services.Application
 {
-    public class CourseService
+    public class CourseService : ICourseService
     {
         private const string V = "https://curtinvet.com.au/wp-content/uploads/2022/03/person-placeholder-female.jpg";
 

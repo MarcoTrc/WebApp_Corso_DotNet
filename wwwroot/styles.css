@@ -5,6 +5,7 @@
 
 .rating {
     color: orange;
+    border-color: orange;
     white-space: nowrap;
 }
 

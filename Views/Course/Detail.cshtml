@@ -55,7 +55,7 @@
                 <a href="#">@lesson.Title</a>
             </div>
             <div class="col-md-3 d-flex align-items-center lesson-duration">
-                <i class="fa-thin fa-clock"></i><time>@lesson.Duration.ToString("m'm 's's'")</time>
+                <i class="far fa-clock"></i><time>@lesson.Duration.ToString("h'h 'm'm 's's'")</time>
             </div>
         </div>
     }
@@ -65,7 +65,7 @@
             Totale
         </div>
         <div class="col-md-3 d-flex align-items-center">
-            <i class="fa-thin fa-clock"></i><time>@Model.TotalCourseDuration.ToString("m'm 's's'")</time>
+            <i class="far fa-clock"></i><time>@Model.TotalCourseDuration.ToString("h'h 'm'm 's's'")</time>
         </div>
     </div>
 </section>

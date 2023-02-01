@@ -8,12 +8,12 @@ using Microsoft.Data.Sqlite;
 namespace WebApp.Models.Services.Infrastructure
 {
     public class SqliteDatabaseAccessor : IDatabaseAccessor
-    // 5. implementando l' interfaccia dovremo definire la logica 
+    // implementando l' interfaccia dovremo definire la logica 
     // del metodo 'DataSet Query(string query)' di cui proprio 
     // l'interfaccia è proprietaria
 
     // Sarà necessario registrare i nuovi servizi nel metodo ConfigureServices
-    // della classe Startup (6.)
+    // della classe Startup
     {
         public async Task<DataSet> QueryAsync(FormattableString formattableQuery)
         {

@@ -7,6 +7,8 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.DependencyInjection;
+using webApp.Models.Services.Application;
+using webApp.Models.Services.Infrastructure;
 using WebApp.Models.Services.Application;
 using WebApp.Models.Services.Infrastructure;
 
@@ -19,36 +21,13 @@ namespace webApp
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_0);
-
-            // 5. services.AddTransient<CourseService>();
-
-            // in questo modo stiamo dicendo ad ASP.NET Core che deve prepararsi
-            // alla gestione di oggetti di tipo "CourseService", per cui quando incontra 
-            // un componente come il nostro controller, che ha una dipendenza 
-            // da un "CourseService", è lui stesso che deve costruirlo e passarlo.
-
-
-            // 6. Ci siamo registrati il nostro primo servizio, il "CourseService", e grazie alla Dependency
-            // Injection ASP.NET Core può quindi crearne un'istanza e iniettarla, attraverso il costruttore, all'interno
-            // dei componenti che ne hanno bisogno per funzionare come il Courses Controller.
-
-
-            // Non potendo creare un istanza di IcourseService dal momento che non
-            // possiede una propria logica implementativa, al metodo AddTrannsient
-            // passiamo sia l'interfaccia che l'effettiva classe in cui è definita
-            // la logica applicativa.
-
-            // 10. services.AddTransient<ICourseService, CourseService>();
-
-            // 6db. 'services.AddTransient<ICourseService, CourseService>()'
-            // diventerà:
-            services.AddTransient<ICourseService, AdoNetCourseService>();
-            // 7db. registriamo anche l'altro servizio, quello infrastrutturale
-            // così che ogni volta che un componente ha una dipendenza dall'interfaccia
-            // IDatabaseAccessor ASP.NET Corer inietterà un istanza di SqliteDatabaseAccessor
+            //services.AddTransient<CourseService>();
+            //services.AddTransient<ICourseService, CourseService>();
+            //services.AddTransient<ICourseService, AdoNetCourseService>();
+            services.AddTransient<ICourseService, EfCoreCourseService>();
             services.AddTransient<IDatabaseAccessor, SqliteDatabaseAccessor>();
+            services.AddDbContext<WebAppDbContext>();
         }
-
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
         {
@@ -56,7 +35,6 @@ namespace webApp
             {
                 app.UseDeveloperExceptionPage();
             }
-
             app.UseStaticFiles();
 
             // app.Run(async (context) =>

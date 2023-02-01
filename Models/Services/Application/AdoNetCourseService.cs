@@ -13,7 +13,6 @@ namespace WebApp.Models.Services.Application
     // Per far si che l'applicazione recuper i dati da visualizzare da
     // un database sarà necessario per prima cosa creare il servizio applicativo e,
     // così come nel caso precedente, fare in modo che implementi l'intefaccia ICourseServices 
-
     // NB un servizio applicativo dovrebbe avere la responsabilità di sapere
     // cosa estrarre dal database, il come farlo sarà delegato ad un servizio
     // infrastrutturale in cui adopereremo in maniera massiccia le classi, in questo caso,
@@ -21,7 +20,7 @@ namespace WebApp.Models.Services.Application
     public class AdoNetCourseService : ICourseService
     {
 
-        // 1. Per esprimere la dipendenza che un componente ha da un altro componente
+        // Per esprimere la dipendenza che un componente ha da un altro componente
         // generiamo un costruttore che fra i parametri avrà un riferimento al 
         // servizio infrastrutturale che andremo a definire (2.) (IDatabaseAccessror db)
         private readonly IDatabaseAccessor db;
@@ -63,10 +62,10 @@ namespace WebApp.Models.Services.Application
 
         public async Task<List<CourseViewModel>> GetCoursesAsync()
         {
-            // 3. Per indicare quali dati estrarre da un Database avremo sicuramente bisogno
+            // Per indicare quali dati estrarre da un Database avremo sicuramente bisogno
             // di una Query sql
             FormattableString query = $"SELECT id, Title, ImagePath, Author, Rating, Fullprice_Amount, FullPrice_Currency, CurrentPrice_Amount, CurrentPrice_Currency FROM Courses";
-            // 4. Ora passiamo la query al nostro oggetto db tramite un metodo
+            // Ora passiamo la query al nostro oggetto db tramite un metodo
             // ( 'Query()' per esempio...). Il servizio infrastrutturale dovrà restituirci 
             // le informazioni trovate nel database in forma di un qualche oggetto.
             // In ADO.NET l'oggetto DataSet è idoneo alle nostre esigenze.  
@@ -82,14 +81,12 @@ namespace WebApp.Models.Services.Application
             // una proprietà 'Tables' che ci prendiamo e al assegnamo ad 
             // una variabile dataTable
             var dataTable = dataset.Tables[0];
-
             // in più il DataTable al suo interno ha una proprietà 'rows'
             // che contiene tutte le righe apparteneti alla tabella
 
             // essendo che GetCourses dovrà restituire una Lista di CourseViewModel
             // posso creare un oggetto dello stesso tipo in cui mappare tutte le righe 
             // della tabella tramite un foreach
-
             var courseList = new List<CourseViewModel>();
 
             foreach (DataRow courseRow in dataTable.Rows)

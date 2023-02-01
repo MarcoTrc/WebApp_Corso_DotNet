@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace WebApp.Models.Services.Infrastructure
 {
-    // 2. Creiamo l'interfaccia IDatabaseAccessor e torniamo al servizio per 
+    // Creiamo l'interfaccia IDatabaseAccessor e torniamo al servizio per 
     // decidere quali membri pubblici apparterranno all'interfaccia.
     public interface IDatabaseAccessor
     {
